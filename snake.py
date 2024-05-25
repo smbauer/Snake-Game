@@ -25,6 +25,15 @@ class Snake:
             self.add_segment(position)
 
 
+    def reset_snake(self) -> None:
+        """reset the snake to the starting position"""
+        for segment in self.segments:
+            segment.goto(1000, 1000)
+        self.segments.clear()
+        self.create_snake()
+        self.head = self.segments[0]
+
+
     def add_segment(self, position):
         """creates a new segment and adds it to the snake"""
         segment = Turtle(shape="square")

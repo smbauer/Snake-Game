@@ -18,10 +18,11 @@ food = Food()
 scoreboard = Scoreboard()
 
 # bind keys
-screen.onkey(fun=snake.right, key="Right")
-screen.onkey(fun=snake.up, key="Up")
-screen.onkey(fun=snake.left, key="Left")
-screen.onkey(fun=snake.down, key="Down")
+screen.onkeypress(fun=snake.right, key="Right")
+screen.onkeypress(fun=snake.up, key="Up")
+screen.onkeypress(fun=snake.left, key="Left")
+screen.onkeypress(fun=snake.down, key="Down")
+screen.onkeypress(fun=screen.bye, key="space")
 screen.listen()
 
 # run the game
@@ -34,8 +35,9 @@ while game_on:
 
     # detect collision with wall
     if snake.wall_collision():
-        game_on = False
-        scoreboard.game_over()
+        # game_on = False
+        scoreboard.reset_scoreboard()
+        snake.reset_snake()
 
     # detect collision with food
     if snake.head.distance(food) < 15:
@@ -45,9 +47,9 @@ while game_on:
 
     # detect collision with tail
     if snake.tail_collision():
-        game_on = False
-        print("Tail collision")
-        scoreboard.game_over()
-
+        # game_on = False
+        scoreboard.reset_scoreboard()
+        snake.reset_snake()
+        
 
 screen.exitonclick()
